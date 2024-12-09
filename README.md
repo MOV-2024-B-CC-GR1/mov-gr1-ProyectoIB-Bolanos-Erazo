@@ -15,10 +15,10 @@
 
 ### Aplicación para Compra de Juegos  
 
-**Título del Proyecto:** GaneStore 
+**Título del Proyecto:** Pixelia 
 
 **Descripción:**  
-La aplicación *GameStore* está diseñada para ofrecer a los usuarios una plataforma eficiente y amigable para explorar, buscar, y adquirir juegos digitales. Con un enfoque en la comodidad y la experiencia del usuario, permite gestionar listas de juegos favoritos, explorar un catálogo diverso y realizar compras de manera segura.  
+La aplicación *Pixelia* está diseñada para ofrecer a los usuarios una plataforma eficiente y amigable para explorar, buscar, y adquirir juegos digitales. Con un enfoque en la comodidad y la experiencia del usuario, permite gestionar listas de juegos favoritos, explorar un catálogo diverso y realizar compras de manera segura.  
 
 ### Características Clave:  
 
