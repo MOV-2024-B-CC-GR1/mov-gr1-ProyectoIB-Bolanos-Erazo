@@ -5,7 +5,6 @@
 1. 📖 Descripción del Proyecto  
 2. 🛠️ Tecnologías Utilizadas  
 3. 📄 Documentación  
-   - 📑 Primer Bimestre  
 4. 👥 Autores  
 5. 📂 Estructura del Proyecto  
 
@@ -67,7 +66,7 @@ Una aplicación funcional y completa que permita a los usuarios explorar, compra
 
 ### 📑 Primer Bimestre  
 1. **Mockups:** Diseños preliminares de las pantallas principales de la aplicación.  
-2. **Diagrama Entidad-Relación:** Modelo de la base de datos que soporta las funcionalidades de la aplicación.  
+2. **Capturas de la base de datos en firebase:** Modelo de la base de datos que soporta las funcionalidades de la aplicación en firebase.  
 3. **Historias de Usuario:** Descripción de requisitos funcionales desde la perspectiva del usuario.  
 
 ---
