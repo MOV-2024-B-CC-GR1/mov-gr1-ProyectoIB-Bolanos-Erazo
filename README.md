@@ -1,4 +1,4 @@
-# GameStore
+# Pixelia
 
 ## 📋 Índice
 
