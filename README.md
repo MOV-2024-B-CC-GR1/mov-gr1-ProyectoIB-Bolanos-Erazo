@@ -85,9 +85,6 @@ Una aplicación funcional y completa que permita a los usuarios explorar, compra
 mov-grX-nombre_proyecto/
 ├── README.md
 ├── documentación/
-│   ├── diagramas/
-│   │   └── Diagrama ER de base de datos.pdf
-│   └── historias_usuario/
-│       └── Historia_Usuario.md
-│   ├── mockups/
-│   │   └── Mockups-nombre.pdf
+│   │   └── Base de datos Pixelia_Bolaños_Erazo.pdf
+│       └── HU Pixelia_Bolaños_Erazo
+│   │   └── Mockups Pixelia_ Bolaños_Erazo.pdf
