@@ -1,4 +1,4 @@
-# Juegos a tu Alcance
+# GameStore
 
 ## 📋 Índice
 
@@ -15,10 +15,10 @@
 
 ### Aplicación para Compra de Juegos  
 
-**Título del Proyecto:** Juegos a tu Alcance  
+**Título del Proyecto:** GaneStore 
 
 **Descripción:**  
-La aplicación *Juegos a tu Alcance* está diseñada para ofrecer a los usuarios una plataforma eficiente y amigable para explorar, buscar, y adquirir juegos digitales. Con un enfoque en la comodidad y la experiencia del usuario, permite gestionar listas de juegos favoritos, explorar un catálogo diverso y realizar compras de manera segura.  
+La aplicación *GameStore* está diseñada para ofrecer a los usuarios una plataforma eficiente y amigable para explorar, buscar, y adquirir juegos digitales. Con un enfoque en la comodidad y la experiencia del usuario, permite gestionar listas de juegos favoritos, explorar un catálogo diverso y realizar compras de manera segura.  
 
 ### Características Clave:  
 
@@ -58,7 +58,7 @@ Una aplicación funcional y completa que permita a los usuarios explorar, compra
 
 - **Lenguaje:** Kotlin  
 - **IDE:** Android Studio / IntelliJ IDEA  
-- **Base de Datos:** SQLite  
+- **Base de Datos:** FireBase  
 - **Versionamiento:** Git y GitHub  
 
 ---
@@ -74,8 +74,8 @@ Una aplicación funcional y completa que permita a los usuarios explorar, compra
 
 ## 👥 Autores  
 
-- [Tu Nombre]  
-- [Colaborador, si aplica]  
+- Elias Bolaños
+- Steven Erazo 
 
 ---
 
