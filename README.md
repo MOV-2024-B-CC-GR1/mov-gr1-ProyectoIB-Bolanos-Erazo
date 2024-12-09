@@ -84,6 +84,7 @@ Una aplicación funcional y completa que permita a los usuarios explorar, compra
 ```plaintext
 mov-grX-nombre_proyecto/
 ├── README.md
+├── Android
 ├── documentación/
 │   │   └── Base de datos Pixelia_Bolaños_Erazo.pdf
 │       └── HU Pixelia_Bolaños_Erazo
