@@ -82,7 +82,7 @@ Una aplicación funcional y completa que permita a los usuarios explorar, compra
 ## 📂 Estructura del Proyecto  
 
 ```plaintext
-mov-grX-nombre_proyecto/
+mov-gr1-ProyectoIB-Bolanos-Erazo/
 ├── README.md
 ├── Android
 ├── documentación/
