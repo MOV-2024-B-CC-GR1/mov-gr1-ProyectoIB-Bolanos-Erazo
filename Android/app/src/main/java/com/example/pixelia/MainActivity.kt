@@ -1,51 +1,111 @@
 package com.example.pixelia
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast // Agregar este import
+import android.util.Log
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pixelia.adapter.GameAdapter
 import com.example.pixelia.model.Game
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: GameAdapter
-    private lateinit var gameList: MutableList<Game>
+    private val database = FirebaseDatabase.getInstance("https://pixelia-e12f8-default-rtdb.firebaseio.com/")
+    private val gamesRef = database.getReference("juegos")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Prueba de conexión con Firebase
+        database.getReference(".info/connected").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val connected = snapshot.getValue(Boolean::class.java) ?: false
+                Log.d("MainActivity", "Conexión a Firebase: $connected")
+                if (!connected) {
+                    Toast.makeText(this@MainActivity, "Sin conexión a Firebase", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("MainActivity", "Error en la conexión", error.toException())
+            }
+        })
+
+        // Configurar RecyclerView
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = GameAdapter(this, mutableListOf())
+        recyclerView.adapter = adapter
+
+        // Configurar botones
+        findViewById<Button>(R.id.button1).apply {
+            text = "Tienda"
+            setOnClickListener {
+                // Recargar los juegos
+                loadGames()
+            }
+        }
+
+        findViewById<Button>(R.id.button2).apply {
+            text = "Mis Juegos"
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, MyGamesActivity::class.java))
+            }
+        }
+
+        findViewById<Button>(R.id.addGameButton).apply {
+            text = "Añadir Juego"
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, AddGameActivity::class.java))
+            }
+        }
+
+        loadGames()
+    }
+
+    private fun loadGames() {
         try {
-            recyclerView = findViewById(R.id.recyclerView)
-            recyclerView.layoutManager = LinearLayoutManager(this)
+            gamesRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    try {
+                        val gamesList = mutableListOf<Game>()
+                        for (gameSnapshot in snapshot.children) {
+                            val game = gameSnapshot.getValue(Game::class.java)
+                            game?.let { gamesList.add(it) }
+                        }
+                        adapter.updateGames(gamesList.sortedBy { it.title })
+                        Log.d("MainActivity", "Juegos cargados: ${gamesList.size}")
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Error al procesar los datos", e)
+                        Toast.makeText(this@MainActivity,
+                            "Error al procesar los juegos: ${e.message}",
+                            Toast.LENGTH_LONG).show()
+                    }
+                }
 
-            gameList = mutableListOf()
-            gameList.add(Game(
-                "Game 1",
-                "Description of Game 1",
-                R.drawable.game_image_1,
-                "$4.99"
-            ))
-            gameList.add(Game(
-                "Game 2",
-                "Description of Game 2",
-                R.drawable.game_image_2,
-                "$9.99"
-            ))
-            gameList.add(Game(
-                "Game 3",
-                "Description of Game 3",
-                R.drawable.game_image_3,
-                "$14.99"
-            ))
-
-            adapter = GameAdapter(this, gameList)
-            recyclerView.adapter = adapter
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Error de Firebase: ${error.message}",
+                        error.toException())
+                    Toast.makeText(this@MainActivity,
+                        "Error al cargar los juegos: ${error.message}",
+                        Toast.LENGTH_LONG).show()
+                }
+            })
         } catch (e: Exception) {
-            Toast.makeText(this, "Error al inicializar la aplicación", Toast.LENGTH_SHORT).show()
-            e.printStackTrace()
+            Log.e("MainActivity", "Error al configurar el listener", e)
+            Toast.makeText(this,
+                "Error al conectar con la base de datos: ${e.message}",
+                Toast.LENGTH_LONG).show()
         }
     }
 }

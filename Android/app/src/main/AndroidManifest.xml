@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permisos necesarios para Firebase y carga de imágenes -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -33,6 +37,21 @@
         <activity
             android:name=".SuccessPaymentActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".AddGameActivity"
+            android:exported="false"
+            android:label="Añadir Juego" />
+
+        <activity
+            android:name=".MyGamesActivity"
+            android:exported="false"
+            android:label="Mis Juegos" />
+
+        <!-- Para Firebase -->
+        <meta-data
+            android:name="com.google.firebase.database.DatabaseUrl"
+            android:value="https://pixelia-e12f8-default-rtdb.firebaseio.com/" />
 
     </application>
 
