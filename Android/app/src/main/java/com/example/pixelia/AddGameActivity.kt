@@ -10,10 +10,11 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
-class AddGameActivity : AppCompatActivity() {
-
+class AddGameActivity : BaseActivity() {
     private val database = FirebaseDatabase.getInstance("https://pixelia-e12f8-default-rtdb.firebaseio.com/")
     private val gamesRef = database.getReference("juegos")
+
+    override fun getLayoutResourceId(): Int = R.layout.activity_add_game
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

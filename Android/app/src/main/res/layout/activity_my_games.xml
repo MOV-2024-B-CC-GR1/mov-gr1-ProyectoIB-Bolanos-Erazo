@@ -2,27 +2,41 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- Espacio para la barra de estado y cámara -->
+    <Space
+        android:id="@+id/topSpace"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleMyGames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
         android:text="Mis Juegos"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/topSpace" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMyGames"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
         android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@id/titleMyGames"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons" />
+
+    <include
+        android:id="@+id/bottomButtons"
+        layout="@layout/layout_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

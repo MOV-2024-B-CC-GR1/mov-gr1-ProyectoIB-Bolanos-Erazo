@@ -15,60 +15,22 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : BaseActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: GameAdapter
     private val database = FirebaseDatabase.getInstance("https://pixelia-e12f8-default-rtdb.firebaseio.com/")
     private val gamesRef = database.getReference("juegos")
 
+    override fun getLayoutResourceId(): Int = R.layout.activity_main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Prueba de conexión con Firebase
-        database.getReference(".info/connected").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val connected = snapshot.getValue(Boolean::class.java) ?: false
-                Log.d("MainActivity", "Conexión a Firebase: $connected")
-                if (!connected) {
-                    Toast.makeText(this@MainActivity, "Sin conexión a Firebase", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("MainActivity", "Error en la conexión", error.toException())
-            }
-        })
 
         // Configurar RecyclerView
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = GameAdapter(this, mutableListOf())
         recyclerView.adapter = adapter
-
-        // Configurar botones
-        findViewById<Button>(R.id.button1).apply {
-            text = "Tienda"
-            setOnClickListener {
-                // Recargar los juegos
-                loadGames()
-            }
-        }
-
-        findViewById<Button>(R.id.button2).apply {
-            text = "Mis Juegos"
-            setOnClickListener {
-                startActivity(Intent(this@MainActivity, MyGamesActivity::class.java))
-            }
-        }
-
-        findViewById<Button>(R.id.addGameButton).apply {
-            text = "Añadir Juego"
-            setOnClickListener {
-                startActivity(Intent(this@MainActivity, AddGameActivity::class.java))
-            }
-        }
 
         loadGames()
     }

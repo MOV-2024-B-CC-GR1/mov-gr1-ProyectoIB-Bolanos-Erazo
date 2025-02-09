@@ -14,18 +14,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class MyGamesActivity : AppCompatActivity() {
-
-    private val database = FirebaseDatabase.getInstance("https://pixelia-e12f8-default-rtdb.firebaseio.com/")
+class MyGamesActivity : BaseActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PurchasedGamesAdapter
+    private val database = FirebaseDatabase.getInstance("https://pixelia-e12f8-default-rtdb.firebaseio.com/")
+
+    override fun getLayoutResourceId(): Int = R.layout.activity_my_games
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_games)
 
         recyclerView = findViewById(R.id.recyclerViewMyGames)
-        recyclerView.layoutManager = GridLayoutManager(this, 2) // 2 columnas
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
         adapter = PurchasedGamesAdapter(this) { game ->
             showExecuteGameDialog(game)
         }
